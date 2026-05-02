@@ -1,0 +1,3295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 4 — Mindmap Tiếp cận và Thiết lập Hợp đồng OD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2847;
+    --navy-deep: #061833;
+    --navy-soft: #1d3a5f;
+    --teal: #2a9d8f;
+    --teal-deep: #1e7d72;
+    --teal-light: #5cbfb3;
+    --gold: #d4a85a;
+    --gold-soft: #ecd4a0;
+    --terracotta: #c25e3a;
+    --plum: #6b3a5e;
+    --sage: #6b8e6b;
+    --paper: #f7f1e3;
+    --paper-warm: #efe6d2;
+    --paper-deep: #e3d6b8;
+    --ink: #14213d;
+    --ink-soft: #2c3a5e;
+    --ink-light: #5a6a8a;
+    --line: rgba(13, 40, 71, 0.15);
+    --shadow: 0 8px 24px rgba(13, 40, 71, 0.12);
+    --shadow-lg: 0 20px 50px rgba(13, 40, 71, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(212, 168, 90, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 157, 143, 0.06) 0%, transparent 40%);
+  }
+
+  /* ==================== HERO ==================== */
+  .hero {
+    padding: 70px 40px 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 24px;
+  }
+
+  .hero-meta::before, .hero-meta::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 12vw, 130px);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 0.9;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero-chapter .num {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px, 3.5vw, 38px);
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .hero-title .accent {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .hero-subject {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 28px;
+  }
+
+  .hero-intro {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .hero-tip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 10px 20px;
+    background: var(--navy);
+    color: var(--paper);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-tip svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ==================== SECTION HEADERS ==================== */
+  .section {
+    padding: 60px 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .part-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .part-label::before, .part-label::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .part-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .part-subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink-light);
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* ==================== MINDMAP CONTAINER ==================== */
+  .mindmap {
+    position: relative;
+    width: 100%;
+    max-width: 1150px;
+    height: 760px;
+    margin: 40px auto;
+  }
+
+  .mindmap-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(13, 40, 71, 0.04) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .connectors {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ==================== CENTRAL HUB ==================== */
+  .hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hub-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    box-shadow:
+      0 0 0 8px rgba(13, 40, 71, 0.08),
+      0 0 0 16px rgba(13, 40, 71, 0.04),
+      var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hub-circle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 25%, rgba(212, 168, 90, 0.2) 0%, transparent 50%);
+  }
+
+  .hub-illustration {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hub-illustration svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hub-rotate-ring {
+    position: absolute;
+    inset: -20px;
+    border: 1px dashed var(--gold);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: rotate 60s linear infinite;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ==================== NODES ==================== */
+  .node {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+  }
+
+  .node-icon-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .node-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 4px solid var(--paper);
+    box-shadow: 0 6px 18px rgba(42, 157, 143, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 2;
+  }
+
+  .node-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: none;
+    stroke: white;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .node-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.4;
+    z-index: -1;
+    animation: pulse 2.5s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .node:hover .node-icon {
+    background: var(--gold);
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 10px 28px rgba(212, 168, 90, 0.4);
+  }
+
+  .node:hover .node-icon::before { background: var(--gold); }
+
+  .node.dark .node-icon {
+    background: var(--navy);
+    box-shadow: 0 6px 18px rgba(13, 40, 71, 0.3);
+  }
+
+  .node.dark .node-icon::before { background: var(--navy); }
+
+  .node.dark:hover .node-icon {
+    background: var(--terracotta);
+    box-shadow: 0 10px 28px rgba(194, 94, 58, 0.4);
+  }
+
+  .node.dark:hover .node-icon::before { background: var(--terracotta); }
+
+  .node-num-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 28px;
+    height: 28px;
+    background: var(--paper);
+    border: 2px solid var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    z-index: 3;
+  }
+
+  .node-label {
+    background: white;
+    border: 2px solid var(--navy);
+    padding: 14px 18px;
+    min-width: 200px;
+    max-width: 240px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .node-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--teal);
+    transition: background 0.3s;
+  }
+
+  .node.dark .node-label::before { background: var(--gold); }
+
+  .node:hover .node-label {
+    background: var(--paper-warm);
+    border-color: var(--gold);
+    transform: translateX(2px);
+  }
+
+  .node-label-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .node-label-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .node-label-list li {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding: 1px 0;
+    position: relative;
+    padding-left: 10px;
+  }
+
+  .node-label-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Positions */
+  .pos-N { top: 10px; left: 50%; transform: translateX(-50%); flex-direction: column; }
+  .pos-N .node-label { text-align: center; }
+  .pos-S { bottom: 10px; left: 50%; transform: translateX(-50%); flex-direction: column-reverse; }
+  .pos-S .node-label { text-align: center; }
+  .pos-NW { top: 70px; left: 30px; flex-direction: row-reverse; }
+  .pos-NW .node-label { text-align: right; }
+  .pos-W { top: 50%; left: 30px; transform: translateY(-50%); flex-direction: row-reverse; }
+  .pos-W .node-label { text-align: right; }
+  .pos-SW { bottom: 70px; left: 30px; flex-direction: row-reverse; }
+  .pos-SW .node-label { text-align: right; }
+  .pos-NE { top: 70px; right: 30px; flex-direction: row; }
+  .pos-NE .node-label { text-align: left; }
+  .pos-E { top: 50%; right: 30px; transform: translateY(-50%); flex-direction: row; }
+  .pos-E .node-label { text-align: left; }
+  .pos-SE { bottom: 70px; right: 30px; flex-direction: row; }
+  .pos-SE .node-label { text-align: left; }
+
+  .pos-NW .node-label-list li,
+  .pos-W .node-label-list li,
+  .pos-SW .node-label-list li {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+
+  .pos-NW .node-label-list li::before,
+  .pos-W .node-label-list li::before,
+  .pos-SW .node-label-list li::before {
+    left: auto;
+    right: 0;
+  }
+
+  .pos-N .node-label-list,
+  .pos-S .node-label-list {
+    display: inline-block;
+    text-align: left;
+  }
+
+  .group-label {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    pointer-events: none;
+    background: var(--paper);
+    padding: 4px 14px;
+  }
+
+  .group-label-left {
+    top: 50%;
+    left: 290px;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+  }
+
+  .group-label-right {
+    top: 50%;
+    right: 290px;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right center;
+  }
+
+  /* ==================== HOW-TO BANNER ==================== */
+  .howto {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 28px 40px;
+    margin: 40px auto;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .howto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--teal) 100%);
+  }
+
+  .howto-icon {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .howto-icon svg { width: 28px; height: 28px; stroke: var(--navy); fill: none; stroke-width: 2; }
+
+  .howto-text h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--paper);
+  }
+
+  .howto-text p {
+    font-size: 13px;
+    color: var(--paper-warm);
+    line-height: 1.5;
+  }
+
+  /* ==================== MODAL ==================== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 40, 71, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-content {
+    background: var(--paper);
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    position: relative;
+    border-top: 4px solid var(--gold);
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .modal-header {
+    padding: 36px 48px 28px;
+    background: white;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-icon svg { width: 28px; height: 28px; stroke: white; fill: none; stroke-width: 1.8; }
+
+  .modal-title-wrap { flex: 1; min-width: 0; }
+
+  .modal-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 11;
+  }
+
+  .modal-close:hover {
+    background: var(--navy);
+    transform: rotate(90deg);
+  }
+
+  .modal-close svg { width: 16px; height: 16px; stroke: var(--navy); transition: stroke 0.3s; fill: none; stroke-width: 2; }
+  .modal-close:hover svg { stroke: white; }
+
+  .modal-body { padding: 36px 48px 48px; }
+
+  /* ==================== PRESENTATION VISUAL BLOCKS ==================== */
+
+  /* Hero stat - big number callout */
+  .hero-stat {
+    text-align: center;
+    padding: 28px 24px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: var(--paper);
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-stat::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 140px;
+    height: 140px;
+    border: 1px dashed var(--gold);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .hero-stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .hero-stat-label {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--paper);
+    margin-bottom: 6px;
+  }
+
+  .hero-stat-sub {
+    font-size: 13px;
+    color: var(--gold-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Section heading inside modal */
+  .slide-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 28px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .slide-heading::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .slide-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* Stat grid - small stats in row */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .stat-item {
+    background: white;
+    padding: 20px 16px;
+    text-align: center;
+    border-top: 3px solid var(--teal);
+    transition: all 0.3s;
+  }
+
+  .stat-item.gold { border-top-color: var(--gold); }
+  .stat-item.terracotta { border-top-color: var(--terracotta); }
+  .stat-item.plum { border-top-color: var(--plum); }
+
+  .stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  /* Icon grid - icon + label cards */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .icon-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .icon-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .icon-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 700px) {
+    .icon-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .icon-card {
+    background: white;
+    padding: 20px 18px;
+    text-align: center;
+    border: 1px solid var(--line);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .icon-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-card-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-card-icon.teal { background: var(--teal); }
+  .icon-card-icon.teal svg { stroke: white; }
+  .icon-card-icon.gold { background: var(--gold); }
+  .icon-card-icon.gold svg { stroke: var(--navy); }
+  .icon-card-icon.navy { background: var(--navy); }
+  .icon-card-icon.navy svg { stroke: white; }
+  .icon-card-icon.terracotta { background: var(--terracotta); }
+  .icon-card-icon.terracotta svg { stroke: white; }
+
+  .icon-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .icon-card-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-light);
+  }
+
+  /* Process flow - numbered steps */
+  .process-flow {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .process-flow.horizontal {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .process-step {
+    background: white;
+    padding: 18px 20px;
+    border-left: 4px solid var(--gold);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+  }
+
+  .process-flow.horizontal .process-step {
+    flex-direction: column;
+    text-align: center;
+    border-left: none;
+    border-top: 4px solid var(--gold);
+  }
+
+  .process-step-num {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .process-flow.horizontal .process-step-num {
+    margin: 0 auto;
+  }
+
+  .process-step-content { flex: 1; }
+
+  .process-step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .process-step-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* Split comparison - 2 columns */
+  .split-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 640px) { .split-cards { grid-template-columns: 1fr; } }
+
+  .split-card {
+    background: white;
+    padding: 22px 24px;
+    border-top: 4px solid var(--teal);
+    position: relative;
+  }
+
+  .split-card.left { border-top-color: var(--sage); }
+  .split-card.right { border-top-color: var(--terracotta); }
+  .split-card.gold { border-top-color: var(--gold); }
+  .split-card.navy { border-top-color: var(--navy); }
+  .split-card.plum { border-top-color: var(--plum); }
+
+  .split-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .split-card-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--paper-warm);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .split-card-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .split-card.left .split-card-icon { background: var(--sage); }
+  .split-card.left .split-card-icon svg { stroke: white; }
+  .split-card.right .split-card-icon { background: var(--terracotta); }
+  .split-card.right .split-card-icon svg { stroke: white; }
+  .split-card.gold .split-card-icon { background: var(--gold); }
+  .split-card.gold .split-card-icon svg { stroke: var(--navy); }
+  .split-card.navy .split-card-icon { background: var(--navy); }
+  .split-card.navy .split-card-icon svg { stroke: white; }
+  .split-card.plum .split-card-icon { background: var(--plum); }
+  .split-card.plum .split-card-icon svg { stroke: white; }
+
+  .split-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .split-card-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    background: var(--paper-warm);
+    color: var(--ink-soft);
+    margin-left: auto;
+  }
+
+  .split-card.left .split-card-tag { background: var(--sage); color: white; }
+  .split-card.right .split-card-tag { background: var(--terracotta); color: white; }
+  .split-card.gold .split-card-tag { background: var(--gold); color: var(--navy); }
+  .split-card.navy .split-card-tag { background: var(--navy); color: var(--gold); }
+  .split-card.plum .split-card-tag { background: var(--plum); color: white; }
+
+  .split-card-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .split-card-list li {
+    padding: 8px 0 8px 22px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    position: relative;
+    border-bottom: 1px dotted var(--line);
+  }
+
+  .split-card-list li:last-child { border-bottom: none; }
+
+  .split-card-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 14px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .split-card-list li strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* Big quote - hero quote */
+  .big-quote {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: var(--paper);
+    padding: 32px 40px;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .big-quote::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 110px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .big-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--gold-soft);
+    position: relative;
+    z-index: 1;
+  }
+
+  .big-quote-author {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Question cards - big numbered Q */
+  .question-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .q-card {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .q-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .q-card-text {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--paper);
+  }
+
+  /* Warning / alert callout */
+  .alert-box {
+    background: white;
+    border-left: 4px solid var(--terracotta);
+    padding: 20px 24px;
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .alert-box.warn { border-left-color: var(--gold); }
+  .alert-box.info { border-left-color: var(--teal); }
+
+  .alert-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    background: var(--terracotta);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .alert-box.warn .alert-icon { background: var(--gold); }
+  .alert-box.info .alert-icon { background: var(--teal); }
+
+  .alert-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .alert-content { flex: 1; }
+
+  .alert-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .alert-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .alert-text strong { color: var(--navy); font-weight: 600; }
+  .alert-text em { font-style: italic; color: var(--terracotta); font-family: 'Fraunces', serif; }
+
+  /* Timeline visual */
+  .timeline {
+    position: relative;
+    padding: 20px 0 10px;
+    margin: 20px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: var(--line);
+    z-index: 0;
+  }
+
+  .timeline-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-track { grid-template-columns: 1fr 1fr; }
+  }
+
+  .timeline-step {
+    text-align: center;
+    padding: 0 6px;
+  }
+
+  .timeline-dot {
+    width: 22px;
+    height: 22px;
+    background: var(--gold);
+    border: 4px solid var(--paper);
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-step.warn .timeline-dot { background: var(--terracotta); box-shadow: 0 0 0 2px var(--terracotta); }
+  .timeline-step.done .timeline-dot { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+
+  .timeline-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .timeline-event {
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  /* Stakeholder grid - 6 small role cards */
+  .stakeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .stakeholder-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 600px) { .stakeholder-grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+
+  .stakeholder {
+    background: white;
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 3px solid var(--teal);
+    transition: all 0.3s;
+  }
+
+  .stakeholder:nth-child(2n) { border-bottom-color: var(--gold); }
+  .stakeholder:nth-child(3n) { border-bottom-color: var(--terracotta); }
+
+  .stakeholder:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  .stakeholder-role {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .stakeholder-desc {
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--ink-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* Visual: Theory vs Reality split */
+  .vs-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: stretch;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 600px) { .vs-row { grid-template-columns: 1fr; } }
+
+  .vs-side {
+    background: white;
+    padding: 22px 24px;
+    text-align: center;
+  }
+
+  .vs-side.theory { border-top: 3px solid var(--teal); }
+  .vs-side.reality { border-top: 3px solid var(--terracotta); }
+
+  .vs-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .vs-side.theory .vs-eyebrow { color: var(--teal); }
+  .vs-side.reality .vs-eyebrow { color: var(--terracotta); }
+
+  .vs-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .vs-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) { .vs-divider { padding: 6px 0; } }
+
+  /* Reverse arrow flow */
+  .flow-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 8px;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 700px) {
+    .flow-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .flow-arrow { transform: rotate(90deg); padding: 8px 0; }
+  }
+
+  .flow-node {
+    background: white;
+    padding: 18px 14px;
+    text-align: center;
+    border: 2px solid var(--navy);
+  }
+
+  .flow-node.start { border-color: var(--gold); }
+  .flow-node.end { border-color: var(--teal); }
+
+  .flow-node-label {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .flow-node-sub {
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* Insight callout - subtle */
+  .insight {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-deep);
+    padding: 18px 22px;
+    margin: 20px 0;
+    border-left: 3px solid var(--gold);
+  }
+
+  .insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .insight-text {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .insight-text strong { color: var(--navy); font-weight: 600; }
+  .insight-text em { font-style: italic; color: var(--terracotta); font-family: 'Fraunces', serif; }
+
+  /* Compact comparison table for AH lessons */
+  .compact-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: white;
+  }
+
+  .compact-table thead { background: var(--navy); color: white; }
+  .compact-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .compact-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--paper-deep);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+
+  .compact-table .col-aspect {
+    font-weight: 700;
+    color: var(--navy);
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    width: 22%;
+    background: var(--paper-warm);
+  }
+
+  .compact-table .col-strength { color: var(--sage); position: relative; padding-left: 26px; }
+  .compact-table .col-strength::before {
+    content: '✓';
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: var(--sage);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .compact-table .col-improve { color: var(--terracotta); position: relative; padding-left: 26px; }
+  .compact-table .col-improve::before {
+    content: '✗';
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: var(--terracotta);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Lesson highlight - 2 big takeaway cards */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 600px) { .lessons-grid { grid-template-columns: 1fr; } }
+
+  .lesson-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: var(--paper);
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lesson-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .lesson-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .lesson-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gold-soft);
+  }
+
+  /* Iceberg illustration block */
+  .iceberg-block {
+    margin: 24px 0;
+    background: linear-gradient(180deg, #b8d4e8 0%, #b8d4e8 32%, #1a3a5c 32%, #0d2847 100%);
+    padding: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .iceberg-content {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .iceberg-content { grid-template-columns: 1fr; }
+  }
+
+  .iceberg-side {
+    padding: 16px;
+    background: rgba(255,255,255,0.92);
+    color: var(--ink);
+  }
+
+  .iceberg-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .iceberg-side.surface { color: var(--navy); }
+  .iceberg-side.surface .iceberg-label { color: var(--teal); }
+  .iceberg-side.deep { background: rgba(212, 168, 90, 0.95); color: var(--navy); }
+  .iceberg-side.deep .iceberg-label { color: var(--navy); font-weight: 800; }
+
+  .iceberg-content-text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: inherit;
+  }
+
+  .iceberg-content-text strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .iceberg-shape {
+    font-size: 56px;
+    text-align: center;
+    color: white;
+    line-height: 1;
+  }
+
+  /* ==================== CONCLUSION ==================== */
+  .conclusion {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 70px 40px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--teal) 50%, var(--terracotta) 100%);
+  }
+
+  .conclusion-inner { max-width: 900px; margin: 0 auto; }
+  .conclusion .part-label { color: var(--gold-soft); }
+  .conclusion .part-label::before, .conclusion .part-label::after { background: var(--gold-soft); }
+  .conclusion .part-title { color: var(--paper); }
+  .conclusion-content { margin-top: 36px; }
+
+  .conclusion-content p {
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--paper-warm);
+    margin-bottom: 16px;
+  }
+
+  .conclusion-content strong { color: var(--gold-soft); font-weight: 600; }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 36px 0;
+  }
+
+  @media (max-width: 768px) { .pillars { grid-template-columns: 1fr; } }
+
+  .pillar {
+    padding: 24px;
+    border: 1px solid rgba(236, 212, 160, 0.2);
+    background: rgba(212, 168, 90, 0.06);
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--gold-soft);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .pillar h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--paper);
+    margin-bottom: 6px;
+  }
+
+  .pillar p { font-size: 12.5px; color: var(--paper-warm); margin: 0; line-height: 1.5; }
+
+  .conclusion-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5;
+    color: var(--gold-soft);
+    margin: 30px 0 0;
+  }
+
+  /* ==================== FOOTER ==================== */
+  footer {
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  footer .ornament { color: var(--gold); margin: 0 8px; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1100px) {
+    .mindmap { height: auto; min-height: 600px; }
+  }
+
+  @media (max-width: 900px) {
+    .mindmap {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      padding: 30px 0;
+    }
+
+    .hub {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      margin-bottom: 20px;
+    }
+
+    .group-label, .connectors, .mindmap-bg-grid { display: none; }
+
+    .node {
+      position: relative !important;
+      top: auto !important; left: auto !important;
+      right: auto !important; bottom: auto !important;
+      transform: none !important;
+      flex-direction: row !important;
+      width: 100%;
+      max-width: 480px;
+      gap: 16px;
+    }
+
+    .node-label {
+      flex: 1;
+      max-width: none;
+      text-align: left !important;
+    }
+
+    .node-label-list li {
+      padding-left: 10px !important;
+      padding-right: 0 !important;
+    }
+
+    .node-label-list li::before {
+      left: 0 !important;
+      right: auto !important;
+    }
+
+    .modal-header { padding: 28px 24px 20px; }
+    .modal-body { padding: 24px; }
+    .modal-title { font-size: 24px; }
+    .modal-icon { width: 50px; height: 50px; }
+    .modal-icon svg { width: 24px; height: 24px; }
+
+    .icon-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    .stakeholder-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 50px 20px 30px; }
+    .hero-chapter { font-size: 60px; }
+    .section { padding: 40px 16px 30px; }
+    .conclusion { padding: 50px 24px; }
+    .howto { flex-direction: column; text-align: center; gap: 14px; }
+    .howto-icon { margin: 0 auto; }
+    .modal-overlay { padding: 0; }
+    .modal-content { max-width: 100%; min-height: 100vh; }
+    .hero-stat-number { font-size: 56px; }
+    .stat-num { font-size: 32px; }
+  }
+
+  .detail-store { display: none; }
+
+  @media print {
+    .modal-overlay, .howto { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-meta">Bài giảng đại học · Mindmap tương tác</div>
+  <div class="hero-chapter">Chương <span class="num">04</span></div>
+  <h1 class="hero-title">Tiếp cận và <span class="accent">Thiết lập Hợp đồng</span> trong OD</h1>
+  <div class="hero-subject">Quản trị Sự thay đổi · Organizational Development</div>
+  <p class="hero-intro">
+    Hai mindmap dưới đây tóm lược toàn bộ Chương 4: hệ thống lý thuyết và tình huống Alegent Health. Mỗi nhánh tỏa ra từ trung tâm là một chủ đề trong bài giảng — bấm vào icon để mở slide nội dung trực quan.
+  </p>
+  <div class="hero-tip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9 12l2 2 4-4"/>
+    </svg>
+    Bấm vào icon tròn — nội dung mở dạng slide
+  </div>
+</header>
+
+<!-- ==================== MINDMAP 1 ==================== -->
+<section class="section">
+  <div class="section-header">
+    <div class="part-label">Phần I</div>
+    <h2 class="part-title">Hệ thống Lý thuyết</h2>
+    <p class="part-subtitle">Bốn chủ đề lớn · Tám hoạt động cốt lõi</p>
+  </div>
+
+  <div class="mindmap" id="mindmap-1">
+    <div class="mindmap-bg-grid"></div>
+
+    <svg class="connectors" viewBox="0 0 1150 760" preserveAspectRatio="none">
+      <line x1="575" y1="380" x2="575" y2="100" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="175" y2="175" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="100" y2="380" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="175" y2="585" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="575" y2="660" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="975" y2="585" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="1050" y2="380" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="975" y2="175" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+    </svg>
+
+    <div class="group-label group-label-left">Tiếp cận</div>
+    <div class="group-label group-label-right">Hợp đồng</div>
+
+    <div class="hub">
+      <div class="hub-rotate-ring"></div>
+      <div class="hub-circle">
+        <div class="hub-illustration">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#d4a85a" opacity="0.7">
+              <circle cx="50" cy="60" r="1.2"/>
+              <circle cx="220" cy="50" r="1.5"/>
+              <circle cx="70" cy="220" r="1"/>
+              <circle cx="240" cy="200" r="1.2"/>
+              <circle cx="200" cy="80" r="0.8"/>
+              <circle cx="60" cy="180" r="0.8"/>
+            </g>
+            <circle cx="140" cy="140" r="120" fill="none" stroke="#d4a85a" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="140" cy="140" r="100" fill="none" stroke="#d4a85a" stroke-width="0.3" opacity="0.4" stroke-dasharray="2,3"/>
+            <g transform="translate(80, 130)">
+              <circle cx="0" cy="0" r="14" fill="#2a9d8f"/>
+              <path d="M-18,15 Q-22,40 -10,55 L-10,75 L18,75 L18,55 Q30,40 26,15 Q20,-2 0,-2 Q-20,-2 -18,15Z" fill="#2a9d8f"/>
+              <path d="M18,30 Q35,30 45,38" stroke="#2a9d8f" stroke-width="9" stroke-linecap="round" fill="none"/>
+            </g>
+            <g transform="translate(200, 130)">
+              <circle cx="0" cy="0" r="14" fill="#d4a85a"/>
+              <path d="M-18,15 Q-22,40 -10,55 L-10,75 L18,75 L18,55 Q30,40 26,15 Q20,-2 0,-2 Q-20,-2 -18,15Z" fill="#d4a85a"/>
+              <path d="M-18,30 Q-35,30 -45,38" stroke="#d4a85a" stroke-width="9" stroke-linecap="round" fill="none"/>
+            </g>
+            <circle cx="140" cy="168" r="12" fill="#f7f1e3" stroke="#d4a85a" stroke-width="2"/>
+            <path d="M132,168 L138,172 L148,164" stroke="#0d2847" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="50" y1="220" x2="230" y2="220" stroke="#d4a85a" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+            <rect x="80" y="232" width="120" height="22" fill="#d4a85a" rx="2"/>
+            <text x="140" y="248" text-anchor="middle" font-family="Cormorant Garamond" font-size="14" font-style="italic" font-weight="700" fill="#0d2847" letter-spacing="2">OD ENTRY</text>
+            <text x="140" y="62" text-anchor="middle" font-family="Inter" font-size="9" font-weight="600" fill="#d4a85a" letter-spacing="3">CHƯƠNG IV</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="node dark pos-N" onclick="openDetail('overview')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <div class="node-num-badge">01</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Tổng quan</div>
+        <ul class="node-label-list">
+          <li>Khái niệm OD entry</li>
+          <li>Vai trò nền tảng</li>
+          <li>Đơn giản vs. phức tạp</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-NW" onclick="openDetail('problem')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+        </div>
+        <div class="node-num-badge">2.1</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Làm rõ vấn đề</div>
+        <ul class="node-label-list">
+          <li>Vấn đề bề mặt</li>
+          <li>Nguyên nhân gốc rễ</li>
+          <li>Thu thập dữ liệu sơ bộ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-W" onclick="openDetail('client')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/>
+            <path d="M14 14c2 0 5 1.5 5 4"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">2.2</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Xác định khách hàng</div>
+        <ul class="node-label-list">
+          <li>Đơn giản: 1 đơn vị</li>
+          <li>Phức tạp: nhiều bên</li>
+          <li>Ba câu hỏi then chốt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-SW" onclick="openDetail('expert')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+        </div>
+        <div class="node-num-badge">2.3</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Lựa chọn chuyên gia</div>
+        <ul class="node-label-list">
+          <li>Tiêu chí Lippitt</li>
+          <li>Đề xuất chính thức</li>
+          <li>Bảng 4.1 – 5 yếu tố</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node dark pos-S" onclick="openDetail('psych')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a9 9 0 0 0-9 9c0 1.5.4 2.9 1 4l-1 4 4-1c1.2.7 2.5 1 4 1a9 9 0 0 0 1-17z"/>
+            <circle cx="9" cy="12" r="0.8" fill="white"/>
+            <circle cx="12" cy="12" r="0.8" fill="white"/>
+            <circle cx="15" cy="12" r="0.8" fill="white"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">04</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Tâm lý cá nhân</div>
+        <ul class="node-label-list">
+          <li>Tâm lý khách hàng</li>
+          <li>Tâm lý chuyên gia OD</li>
+          <li>Schein: là can thiệp</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-SE" onclick="openDetail('rules')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="3" width="14" height="18" rx="1"/>
+            <line x1="8" y1="8" x2="16" y2="8"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="16" x2="13" y2="16"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">3.3</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Quy tắc làm việc</div>
+        <ul class="node-label-list">
+          <li>Bảo mật thông tin</li>
+          <li>Mức độ tham gia</li>
+          <li>Vai trò &amp; chấm dứt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-E" onclick="openDetail('resources')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <div class="node-num-badge">3.2</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Thời gian &amp; Nguồn lực</div>
+        <ul class="node-label-list">
+          <li>Yêu cầu thiết yếu</li>
+          <li>Yêu cầu mong muốn</li>
+          <li>Khung Peter Block</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-NE" onclick="openDetail('expectations')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
+        </div>
+        <div class="node-num-badge">3.1</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Kỳ vọng chung</div>
+        <ul class="node-label-list">
+          <li>Kỳ vọng từ khách hàng</li>
+          <li>Kỳ vọng từ chuyên gia</li>
+          <li>Đồng thuận hai chiều</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MINDMAP 2 ==================== -->
+<section class="section">
+  <div class="section-header">
+    <div class="part-label">Phần II</div>
+    <h2 class="part-title">Tình huống Alegent Health</h2>
+    <p class="part-subtitle">Lý thuyết gặp thực tiễn — dự án đánh giá thay đổi tại hệ thống bệnh viện Hoa Kỳ</p>
+  </div>
+
+  <div class="mindmap" id="mindmap-2">
+    <div class="mindmap-bg-grid"></div>
+
+    <svg class="connectors" viewBox="0 0 1150 760" preserveAspectRatio="none">
+      <line x1="575" y1="380" x2="575" y2="100" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="175" y2="175" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="100" y2="380" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="175" y2="585" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="575" y2="660" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="975" y2="585" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+      <line x1="575" y1="380" x2="975" y2="175" stroke="#0d2847" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+    </svg>
+
+    <div class="group-label group-label-left">Tiếp cận tại AH</div>
+    <div class="group-label group-label-right">Hợp đồng tại AH</div>
+
+    <div class="hub">
+      <div class="hub-rotate-ring"></div>
+      <div class="hub-circle">
+        <div class="hub-illustration">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1d3a5f"/>
+                <stop offset="1" stop-color="#0d2847"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="280" height="280" fill="url(#sky)"/>
+            <g fill="#d4a85a" opacity="0.6">
+              <circle cx="40" cy="50" r="1"/>
+              <circle cx="220" cy="40" r="1.2"/>
+              <circle cx="60" cy="100" r="0.8"/>
+              <circle cx="200" cy="80" r="1"/>
+              <circle cx="240" cy="130" r="0.8"/>
+            </g>
+            <rect x="40" y="160" width="40" height="60" fill="#2a9d8f"/>
+            <rect x="48" y="170" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="64" y="170" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="48" y="184" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="64" y="184" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="55" y="200" width="10" height="20" fill="#0d2847"/>
+            <rect x="55" y="150" width="10" height="3" fill="#c25e3a"/>
+            <rect x="58.5" y="146" width="3" height="11" fill="#c25e3a"/>
+            <rect x="100" y="120" width="80" height="100" fill="#d4a85a"/>
+            <rect x="112" y="138" width="8" height="8" fill="#0d2847"/>
+            <rect x="136" y="138" width="8" height="8" fill="#0d2847"/>
+            <rect x="160" y="138" width="8" height="8" fill="#0d2847"/>
+            <rect x="112" y="158" width="8" height="8" fill="#0d2847"/>
+            <rect x="136" y="158" width="8" height="8" fill="#0d2847"/>
+            <rect x="160" y="158" width="8" height="8" fill="#0d2847"/>
+            <rect x="112" y="178" width="8" height="8" fill="#0d2847"/>
+            <rect x="136" y="178" width="8" height="8" fill="#0d2847"/>
+            <rect x="160" y="178" width="8" height="8" fill="#0d2847"/>
+            <rect x="130" y="198" width="20" height="22" fill="#0d2847"/>
+            <rect x="128" y="105" width="24" height="6" fill="white"/>
+            <rect x="137" y="98" width="6" height="20" fill="white"/>
+            <rect x="200" y="160" width="40" height="60" fill="#6b3a5e"/>
+            <rect x="208" y="170" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="224" y="170" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="208" y="184" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="224" y="184" width="6" height="6" fill="#f7f1e3"/>
+            <rect x="215" y="200" width="10" height="20" fill="#0d2847"/>
+            <rect x="215" y="150" width="10" height="3" fill="#f7f1e3"/>
+            <rect x="218.5" y="146" width="3" height="11" fill="#f7f1e3"/>
+            <rect x="0" y="220" width="280" height="60" fill="#061833"/>
+            <rect x="60" y="234" width="160" height="22" fill="#d4a85a" rx="2"/>
+            <text x="140" y="250" text-anchor="middle" font-family="Cormorant Garamond" font-size="14" font-style="italic" font-weight="700" fill="#0d2847" letter-spacing="2">ALEGENT HEALTH</text>
+            <text x="140" y="270" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#d4a85a" letter-spacing="3">5 BỆNH VIỆN · OMAHA, NE</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="node dark pos-N" onclick="openDetail('ah-intro')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <div class="node-num-badge">A1</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Giới thiệu tổ chức</div>
+        <ul class="node-label-list">
+          <li>5 bệnh viện · Omaha</li>
+          <li>Sáp nhập từ tôn giáo</li>
+          <li>Decision Accelerators</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-NW" onclick="openDetail('ah-problem')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+        </div>
+        <div class="node-num-badge">A2.1</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Làm rõ vấn đề</div>
+        <ul class="node-label-list">
+          <li>Cơ hội nghiên cứu</li>
+          <li>Trò chuyện hội nghị</li>
+          <li>Internet · Điện thoại CIO</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-W" onclick="openDetail('ah-client')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/>
+            <path d="M14 14c2 0 5 1.5 5 4"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">A2.2</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Xác định khách hàng</div>
+        <ul class="node-label-list">
+          <li>CEO · CFO · CIO</li>
+          <li>Đề xuất study team</li>
+          <li>Right Track director</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-SW" onclick="openDetail('ah-expert')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+        </div>
+        <div class="node-num-badge">A2.3</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Lựa chọn chuyên gia</div>
+        <ul class="node-label-list">
+          <li>Hướng ngược truyền thống</li>
+          <li>Referral từ tư vấn</li>
+          <li>USC giới thiệu gián tiếp</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node dark pos-S" onclick="openDetail('ah-lessons')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 18h6"/>
+            <path d="M10 22h4"/>
+            <path d="M15 14c.2-1 .7-1.7 1.4-2.5A4.7 4.7 0 0 0 18 8a6 6 0 0 0-12 0c0 1 .2 2.2 1.5 3.5A4.6 4.6 0 0 1 9 14"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">A4</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Bài học rút ra</div>
+        <ul class="node-label-list">
+          <li>Bảng so sánh 6 khía cạnh</li>
+          <li>Điểm mạnh vs cải thiện</li>
+          <li>Hai bài học cốt lõi</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-SE" onclick="openDetail('ah-schedule')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="16" rx="1"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="8" y1="3" x2="8" y2="7"/>
+            <line x1="16" y1="3" x2="16" y2="7"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">A3.2</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Lịch trình dự án</div>
+        <ul class="node-label-list">
+          <li>Xung đột với Boy Scouts</li>
+          <li>Hoãn từ 10 → 12</li>
+          <li>Bỏ qua họp study team</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="node pos-NE" onclick="openDetail('ah-contract')">
+      <div class="node-icon-wrap">
+        <div class="node-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="14 3 14 9 20 9"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+          </svg>
+        </div>
+        <div class="node-num-badge">A3.1</div>
+      </div>
+      <div class="node-label">
+        <div class="node-label-title">Hợp đồng chính thức</div>
+        <ul class="node-label-list">
+          <li>Ba luồng công việc</li>
+          <li>Xung đột quyền sở hữu</li>
+          <li>Mâu thuẫn bảo mật</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="howto">
+  <div class="howto-icon">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 11l3 3 8-8"/>
+      <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>
+    </svg>
+  </div>
+  <div class="howto-text">
+    <h3>Hướng dẫn sử dụng cho buổi giảng</h3>
+    <p>Bấm vào icon tròn để mở slide nội dung trực quan · Phím <strong>ESC</strong> hoặc bấm ra ngoài để đóng · Mỗi slide thiết kế dạng visual cards thay vì văn bản dài</p>
+  </div>
+</div>
+
+<!-- ==================== CONCLUSION ==================== -->
+<section class="conclusion">
+  <div class="conclusion-inner">
+    <div class="section-header">
+      <div class="part-label">Kết luận</div>
+      <h2 class="part-title">Nền tảng của thành công OD</h2>
+    </div>
+
+    <div class="conclusion-content">
+      <p>Chương 4 đã trình bày <strong>hai giai đoạn khởi đầu quan trọng</strong> trong quy trình Phát triển Tổ chức: Tiếp cận (Entering) và Thiết lập Hợp đồng (Contracting). Đây không chỉ là các bước thủ tục hành chính mà là nền tảng quyết định sự thành công của toàn bộ quy trình OD.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">I.</div>
+          <h4>Tiếp cận</h4>
+          <p>Làm rõ vấn đề · Xác định khách hàng · Lựa chọn chuyên gia</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">II.</div>
+          <h4>Hợp đồng</h4>
+          <p>Kỳ vọng chung · Thời gian &amp; nguồn lực · Quy tắc làm việc</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">III.</div>
+          <h4>Tâm lý</h4>
+          <p>Tâm lý hai bên · Bản thân giai đoạn này là can thiệp</p>
+        </div>
+      </div>
+
+      <p>Tình huống <strong>Alegent Health</strong> minh họa rõ ràng: quá trình tiếp cận có thể diễn ra <em>nhanh chóng và qua nhiều kênh</em>, nhưng thiết lập hợp đồng đòi hỏi <em>sự cẩn trọng và chi tiết hơn nhiều</em>.</p>
+
+      <p class="conclusion-quote">
+        "Bài học lớn nhất từ AH là sự minh bạch ngay từ đầu về ground rules<br>
+        — đặc biệt quyền sở hữu dữ liệu —<br>
+        và cam kết thực hiện đầy đủ các essential requirements."
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ornament">❦</span>
+  Quản trị Sự thay đổi · Chương 4
+  <span class="ornament">❦</span>
+  Mindmap tương tác · Nhóm 1
+  <span class="ornament">❦</span>
+</footer>
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal-overlay" id="modal" onclick="closeIfBackdrop(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeDetail()" aria-label="Đóng">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="6" y1="18" x2="18" y2="6"/>
+      </svg>
+    </button>
+    <div class="modal-header">
+      <div class="modal-icon" id="modal-icon"><svg viewBox="0 0 24 24"></svg></div>
+      <div class="modal-title-wrap">
+        <div class="modal-eyebrow" id="modal-eyebrow">Phần I</div>
+        <h2 class="modal-title" id="modal-title">Tiêu đề</h2>
+      </div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ==================== HIDDEN DETAIL CONTENT (PRESENTATION-READY) ==================== -->
+<div class="detail-store">
+
+  <!-- 01. TỔNG QUAN -->
+  <div data-id="overview" data-eyebrow="Phần I — Mục 01" data-title="Tổng quan về Tiếp cận và Thiết lập Hợp đồng">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">02</div>
+      <div class="hero-stat-label">Bước khởi đầu trong quy trình OD</div>
+      <div class="hero-stat-sub">Entering · Contracting</div>
+    </div>
+
+    <div class="slide-heading">Định nghĩa cốt lõi</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+        </div>
+        <div class="icon-card-title">Xác định vấn đề</div>
+        <div class="icon-card-desc">Sơ bộ vấn đề / cơ hội phát triển</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 0 0-8 0v4"/><rect x="5" y="11" width="14" height="10" rx="1"/></svg>
+        </div>
+        <div class="icon-card-title">Mối quan hệ hợp tác</div>
+        <div class="icon-card-desc">Giữa chuyên gia OD và khách hàng</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <div class="icon-card-title">Nền tảng</div>
+        <div class="icon-card-desc">Cho chẩn đoán → triển khai → đánh giá</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Ba câu hỏi cốt lõi</div>
+    <div class="question-cards">
+      <div class="q-card">
+        <div class="q-card-num">?</div>
+        <div class="q-card-text"><strong>WHAT</strong><br>Vấn đề nào sẽ được giải quyết?</div>
+      </div>
+      <div class="q-card">
+        <div class="q-card-num">?</div>
+        <div class="q-card-text"><strong>WHO</strong><br>Ai sẽ thực hiện?</div>
+      </div>
+      <div class="q-card">
+        <div class="q-card-num">?</div>
+        <div class="q-card-text"><strong>HOW</strong><br>Thực hiện bằng cách nào?</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Hai bối cảnh áp dụng</div>
+    <div class="split-cards">
+      <div class="split-card left">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div>
+            <div class="split-card-title">Đơn giản</div>
+          </div>
+          <span class="split-card-tag">Nội bộ</span>
+        </div>
+        <ul class="split-card-list">
+          <li>Nhà quản lý <strong>tự đóng vai trò</strong> chuyên gia OD</li>
+          <li>Chỉ cần <strong>họp nội bộ</strong> để thảo luận</li>
+          <li>Không cần hợp đồng pháp lý</li>
+        </ul>
+      </div>
+      <div class="split-card right">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+          </div>
+          <div>
+            <div class="split-card-title">Phức tạp</div>
+          </div>
+          <span class="split-card-tag">Bên ngoài</span>
+        </div>
+        <ul class="split-card-list">
+          <li>Sử dụng <strong>chuyên gia OD chuyên nghiệp</strong> bên ngoài</li>
+          <li>Thay đổi mang tính <strong>chiến lược quy mô lớn</strong></li>
+          <li>Cần đề xuất chính thức &amp; hợp đồng pháp lý</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Điểm cần ghi nhớ</div>
+      <div class="insight-text">Hai bước này đặt nền tảng cho <strong>chẩn đoán → lập kế hoạch → triển khai → đánh giá &amp; thể chế hóa</strong>. Bỏ qua giai đoạn này = thiếu định hướng cho toàn bộ quy trình OD.</div>
+    </div>
+  </div>
+
+  <!-- 2.1 LÀM RÕ VẤN ĐỀ -->
+  <div data-id="problem" data-eyebrow="Phần I — Tiếp cận 2.1" data-title="Làm rõ vấn đề tổ chức">
+
+    <div class="iceberg-block">
+      <div class="iceberg-content">
+        <div class="iceberg-side surface">
+          <div class="iceberg-label">Bề mặt</div>
+          <div class="iceberg-content-text">
+            <strong>Vấn đề thấy được</strong>
+            • Giảm thị phần<br>
+            • Tăng tỷ lệ vắng mặt<br>
+            • "Đang phát triển quá nhanh"
+          </div>
+        </div>
+        <div class="iceberg-shape">▲<br><span style="font-size:32px;">▼</span></div>
+        <div class="iceberg-side deep">
+          <div class="iceberg-label">Gốc rễ</div>
+          <div class="iceberg-content-text">
+            <strong>Nguyên nhân thực sự</strong>
+            • Quy trình SP mới yếu<br>
+            • Chính sách dịch vụ KH<br>
+            • Xung đột nhóm
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box warn">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.3 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Bẫy thường gặp</div>
+        <div class="alert-text">Vấn đề bề mặt thường đi kèm <strong>giải pháp ngầm định</strong>. Ví dụ: "Chi phí cao → cần tinh giản bộ máy" — nhưng tinh giản chỉ là <em>giải pháp giả định</em>, không phải vấn đề.</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Quy trình thu thập dữ liệu sơ bộ</div>
+    <div class="process-flow horizontal">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Xem hồ sơ</div>
+          <div class="process-step-desc">Nghiên cứu tài liệu sẵn có của tổ chức</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Phỏng vấn</div>
+          <div class="process-step-desc">Trao đổi với một số thành viên chủ chốt</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Quyết định</div>
+          <div class="process-step-desc">Hai bên đánh giá có nên tiếp tục hay không</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-num">vài giờ</div>
+        <div class="stat-text">đến 1–2 ngày</div>
+      </div>
+      <div class="stat-item gold">
+        <div class="stat-num">2</div>
+        <div class="stat-text">bên cùng quyết định</div>
+      </div>
+      <div class="stat-item terracotta">
+        <div class="stat-num">100%</div>
+        <div class="stat-text">cần làm rõ trước</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 XÁC ĐỊNH KHÁCH HÀNG -->
+  <div data-id="client" data-eyebrow="Phần I — Tiếp cận 2.2" data-title="Xác định hệ thống khách hàng phù hợp">
+
+    <div class="alert-box">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Rủi ro khi xác định sai</div>
+        <div class="alert-text">Nếu các bên có ảnh hưởng <strong>không được đưa vào quá trình</strong>, họ có thể từ chối hỗ trợ và cam kết → <em>thất bại của dự án OD</em>.</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Hai bối cảnh khách hàng</div>
+    <div class="split-cards">
+      <div class="split-card left">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div><div class="split-card-title">Đơn giản</div></div>
+          <span class="split-card-tag">1 đơn vị</span>
+        </div>
+        <ul class="split-card-list">
+          <li>Vấn đề nằm trong <strong>1 đơn vị cụ thể</strong></li>
+          <li>Khách hàng = thành viên đơn vị đó</li>
+          <li><em>Ví dụ:</em> cải thiện ra quyết định nhóm</li>
+        </ul>
+      </div>
+      <div class="split-card right">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="9" y1="6" x2="15" y2="6"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="18" y1="9" x2="18" y2="15"/></svg>
+          </div>
+          <div><div class="split-card-title">Phức tạp</div></div>
+          <span class="split-card-tag">Đa đơn vị</span>
+        </div>
+        <ul class="split-card-list">
+          <li>Liên quan <strong>nhiều phòng ban</strong></li>
+          <li>Mở rộng: nhiều cấp bậc, nhiều đơn vị</li>
+          <li>Có thể bao gồm <em>nhà cung cấp, khách hàng</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-heading">Ba câu hỏi then chốt</div>
+    <div class="question-cards">
+      <div class="q-card">
+        <div class="q-card-num">1</div>
+        <div class="q-card-text">Ai có thể <strong>tác động trực tiếp</strong> đến vấn đề?</div>
+      </div>
+      <div class="q-card">
+        <div class="q-card-num">2</div>
+        <div class="q-card-text">Ai có <strong>lợi ích gắn liền</strong> với vấn đề?</div>
+      </div>
+      <div class="q-card">
+        <div class="q-card-num">3</div>
+        <div class="q-card-text">Ai có quyền <strong>phê duyệt / từ chối</strong> nỗ lực OD?</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Lưu ý quan trọng</div>
+      <div class="insight-text">Hệ thống khách hàng <strong>có thể thay đổi</strong> theo các giai đoạn sau khi có dữ liệu mới — đây là <em>tiến trình động</em>, không phải quyết định tĩnh.</div>
+    </div>
+  </div>
+
+  <!-- 2.3 LỰA CHỌN CHUYÊN GIA -->
+  <div data-id="expert" data-eyebrow="Phần I — Tiếp cận 2.3" data-title="Lựa chọn chuyên gia OD">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">06</div>
+      <div class="hero-stat-label">Tiêu chí của Gordon Lippitt</div>
+      <div class="hero-stat-sub">Nhà tiên phong trong lĩnh vực OD</div>
+    </div>
+
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div class="icon-card-title">Quan hệ cá nhân</div>
+        <div class="icon-card-desc">Khả năng xây dựng quan hệ lành mạnh</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+        </div>
+        <div class="icon-card-title">Tập trung vấn đề</div>
+        <div class="icon-card-desc">Hướng đến giải quyết, không chiêu thức</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="icon-card-title">Kỹ năng phù hợp</div>
+        <div class="icon-card-desc">Chuyên môn khớp với nhu cầu</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon terracotta">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="icon-card-title">Minh bạch vai trò</div>
+        <div class="icon-card-desc">Rõ ràng về phạm vi công việc</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+        </div>
+        <div class="icon-card-title">Hiệp hội nghề</div>
+        <div class="icon-card-desc">Tư cách thành viên chuyên nghiệp</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="icon-card-title">Tham chiếu</div>
+        <div class="icon-card-desc">Phản hồi từ khách hàng trước</div>
+      </div>
+    </div>
+
+    <div class="big-quote">
+      <div class="big-quote-text">Người này đã làm việc hiệu quả như thế nào trong quá khứ, với loại hình tổ chức nào, sử dụng những kỹ thuật gì?</div>
+      <span class="big-quote-author">— Câu hỏi then chốt khi đánh giá chuyên gia OD</span>
+    </div>
+
+    <div class="alert-box warn">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Cảnh báo: chương trình cố định</div>
+        <div class="alert-text">Cần xem xét chuyên gia có tiếp cận với <strong>tinh thần cởi mở</strong> và nhấn mạnh chẩn đoán, hay đang mang theo <em>chương trình cố định áp dụng cho mọi vấn đề</em>.</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Bảng 4.1 · Đề xuất OD hiệu quả</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+        </div>
+        <div class="icon-card-title">Mục tiêu dự án</div>
+        <div class="icon-card-desc">Rõ ràng, đo lường được</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z" fill="none"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <div class="icon-card-title">Quy trình</div>
+        <div class="icon-card-desc">Chẩn đoán → phản hồi → kế hoạch</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/></svg>
+        </div>
+        <div class="icon-card-title">Vai trò</div>
+        <div class="icon-card-desc">Trách nhiệm các bên rõ ràng</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon terracotta">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 22 12 12 22 2 12 12 2"/></svg>
+        </div>
+        <div class="icon-card-title">Can thiệp</div>
+        <div class="icon-card-desc">Đào tạo · hội thảo · tái thiết kế</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="icon-card-title">Chi phí</div>
+        <div class="icon-card-desc">Phí và điều kiện thực hiện</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+        </div>
+        <div class="icon-card-title">Trách nhiệm 2 chiều</div>
+        <div class="icon-card-desc">Chuyên gia tự đánh giá phù hợp</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.1 KỲ VỌNG CHUNG -->
+  <div data-id="expectations" data-eyebrow="Phần I — Hợp đồng 3.1" data-title="Kỳ vọng chung (Mutual Expectations)">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">2 ↔ 2</div>
+      <div class="hero-stat-label">Hai bên cùng nêu kỳ vọng</div>
+      <div class="hero-stat-sub">Mutual expectations</div>
+    </div>
+
+    <div class="split-cards">
+      <div class="split-card navy">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21V12h6v9"/></svg>
+          </div>
+          <div><div class="split-card-title">Phía Khách hàng</div></div>
+          <span class="split-card-tag">Kỳ vọng</span>
+        </div>
+        <ul class="split-card-list">
+          <li><strong>Kết quả cụ thể</strong><br>Giảm chi phí, tăng hài lòng…</li>
+          <li><strong>Mối quan hệ công việc</strong><br>Cách thức tương tác, tham vấn</li>
+          <li><strong>Thành tựu cá nhân</strong><br>Phát triển năng lực lãnh đạo</li>
+        </ul>
+      </div>
+      <div class="split-card gold">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+          </div>
+          <div><div class="split-card-title">Phía Chuyên gia OD</div></div>
+          <span class="split-card-tag">Kỳ vọng</span>
+        </div>
+        <ul class="split-card-list">
+          <li><strong>Cơ hội thử nghiệm</strong><br>Phương pháp can thiệp mới</li>
+          <li><strong>Quyền báo cáo kết quả</strong><br>Cho khách hàng tiềm năng khác</li>
+          <li><strong>Thù lao xứng đáng</strong><br>Phù hợp giá trị mang lại</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Hậu quả khi thiếu đồng thuận</div>
+        <div class="alert-text">Kỳ vọng một bên không được đáp ứng → <strong>giảm cam kết</strong> · <strong>hành động sai hướng</strong> · <em>chấm dứt quy trình sớm</em>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.2 THỜI GIAN & NGUỒN LỰC -->
+  <div data-id="resources" data-eyebrow="Phần I — Hợp đồng 3.2" data-title="Thời gian và Nguồn lực">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">02</div>
+      <div class="hero-stat-label">Loại nguồn lực — Khung Peter Block</div>
+      <div class="hero-stat-sub">Essential vs. Desired</div>
+    </div>
+
+    <div class="split-cards">
+      <div class="split-card right">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 0 0-8 0v4"/><rect x="5" y="11" width="14" height="10" rx="1"/></svg>
+          </div>
+          <div><div class="split-card-title">Yêu cầu THIẾT YẾU</div></div>
+          <span class="split-card-tag">Bắt buộc</span>
+        </div>
+        <ul class="split-card-list">
+          <li><strong>Tiếp cận nhân sự / thông tin</strong> chủ chốt</li>
+          <li><strong>Đủ thời gian</strong> để thực hiện đầy đủ</li>
+          <li><strong>Cam kết</strong> từ các nhóm lợi ích</li>
+        </ul>
+      </div>
+      <div class="split-card gold">
+        <div class="split-card-header">
+          <div class="split-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+          </div>
+          <div><div class="split-card-title">Yêu cầu MONG MUỐN</div></div>
+          <span class="split-card-tag">Tùy chọn</span>
+        </div>
+        <ul class="split-card-list">
+          <li>Tiếp cận <strong>nguồn lực đặc biệt</strong></li>
+          <li><strong>Báo cáo bằng văn bản</strong></li>
+          <li>Hỗ trợ <strong>bổ sung</strong> từ tổ chức</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="big-quote">
+      <div class="big-quote-text">Phân biệt rõ "essential" và "desired" giúp chuyên gia OD bảo vệ mình trước những điều kiện không khả thi và đảm bảo dự án có đủ điều kiện cần thiết để thành công.</div>
+      <span class="big-quote-author">— Khung Peter Block</span>
+    </div>
+  </div>
+
+  <!-- 3.3 QUY TẮC LÀM VIỆC -->
+  <div data-id="rules" data-eyebrow="Phần I — Hợp đồng 3.3" data-title="Quy tắc làm việc chung (Ground Rules)">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">04</div>
+      <div class="hero-stat-label">Nhóm quy tắc cần thống nhất</div>
+      <div class="hero-stat-sub">Ground Rules</div>
+    </div>
+
+    <div class="icon-grid cols-2">
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="icon-card-title">Bảo mật thông tin</div>
+        <div class="icon-card-desc">Cách xử lý dữ liệu nhạy cảm và tin xấu</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div class="icon-card-title">Mức độ tham gia</div>
+        <div class="icon-card-desc">Vào vấn đề cá nhân &amp; giao tiếp</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="icon-card-title">Cách chấm dứt</div>
+        <div class="icon-card-desc">Quy trình kết thúc hợp tác</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon terracotta">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+        </div>
+        <div class="icon-card-title">Vai trò</div>
+        <div class="icon-card-desc">Khuyến nghị hay hỗ trợ tự quyết định?</div>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.3 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Đặc biệt với tư vấn nội bộ</div>
+        <div class="alert-text"><em>Yếu tố chính trị tổ chức</em> khiến việc làm rõ <strong>cách xử lý thông tin nhạy cảm</strong> và <strong>cách truyền đạt "tin xấu"</strong> trở nên đặc biệt quan trọng.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04. TÂM LÝ -->
+  <div data-id="psych" data-eyebrow="Phần I — Mục 04" data-title="Các vấn đề giao tiếp cá nhân">
+
+    <div class="big-quote">
+      <div class="big-quote-text">Giai đoạn tiếp cận và thiết lập hợp đồng chính là một can thiệp theo đúng nghĩa.</div>
+      <span class="big-quote-author">— Edgar Schein</span>
+    </div>
+
+    <div class="slide-heading">4.1 · Tâm lý của khách hàng</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon plum" style="background:var(--plum);"><svg viewBox="0 0 24 24" style="stroke:white;"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="icon-card-title">Bị phơi bày</div>
+        <div class="icon-card-desc">Thừa nhận tổ chức không tự giải quyết được</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon plum" style="background:var(--plum);"><svg viewBox="0 0 24 24" style="stroke:white;"><path d="M3 21V9l9-6 9 6v12"/><line x1="3" y1="21" x2="21" y2="21"/></svg></div>
+        <div class="icon-card-title">Không đủ năng lực</div>
+        <div class="icon-card-desc">Lãnh đạo thiếu khả năng cần thiết</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon plum" style="background:var(--plum);"><svg viewBox="0 0 24 24" style="stroke:white;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/></svg></div>
+        <div class="icon-card-title">Dễ bị tổn thương</div>
+        <div class="icon-card-desc">Phụ thuộc và mất kiểm soát</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">4.2 · Tâm lý của chuyên gia OD</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon gold"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="icon-card-title">Đồng cảm quá mức</div>
+        <div class="icon-card-desc">Chấp nhận điều kiện không hợp lý</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="icon-card-title">Muốn chứng tỏ</div>
+        <div class="icon-card-desc">Nhận dự án vượt quá kỹ năng</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="icon-card-title">Phòng thủ</div>
+        <div class="icon-card-desc">Chất vấn động cơ khách hàng</div>
+      </div>
+    </div>
+
+    <div class="alert-box warn">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Dấu hiệu kháng cự cần lưu ý</div>
+        <div class="alert-text">Khách hàng có thể <strong>yêu cầu lượng chi tiết quá mức</strong> — đây là dấu hiệu của kháng cự (dù ý thức hay vô thức) chứ không phải sự cẩn thận thực sự.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Bài học từ Schein</div>
+      <div class="insight-text">Các tiếp xúc ban đầu phải là <strong>hình mẫu</strong> cho cách quy trình OD sẽ được thực hiện. Thiết lập mối quan hệ lành mạnh ngay từ đầu = <em>tăng khả năng thành công</em>.</div>
+    </div>
+  </div>
+
+  <!-- A1. GIỚI THIỆU AH -->
+  <div data-id="ah-intro" data-eyebrow="Phần II — A1" data-title="Giới thiệu tổ chức Alegent Health">
+
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-text">bệnh viện</div>
+      </div>
+      <div class="stat-item gold">
+        <div class="stat-num">100</div>
+        <div class="stat-text">bác sĩ chính thức</div>
+      </div>
+      <div class="stat-item terracotta">
+        <div class="stat-num">2</div>
+        <div class="stat-text">tổ chức tôn giáo sáp nhập</div>
+      </div>
+      <div class="stat-item plum">
+        <div class="stat-num">~2</div>
+        <div class="stat-text">năm tư vấn OD</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Đặc điểm tổ chức</div>
+    <div class="icon-grid cols-2">
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/></svg>
+        </div>
+        <div class="icon-card-title">Vị trí địa lý</div>
+        <div class="icon-card-desc">Omaha, Nebraska &amp; miền Tây Iowa, Hoa Kỳ</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 0 0-8 0v4"/><rect x="5" y="11" width="14" height="10" rx="1"/></svg>
+        </div>
+        <div class="icon-card-title">Bảo hiểm riêng</div>
+        <div class="icon-card-desc">Chương trình chăm sóc quản lý của AH</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/></svg>
+        </div>
+        <div class="icon-card-title">Hướng người tiêu dùng</div>
+        <div class="icon-card-desc">Chương trình chăm sóc sức khỏe cho NV</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon terracotta">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="icon-card-title">Mục đích sáp nhập</div>
+        <div class="icon-card-desc">Tăng sức mạnh đàm phán với BS &amp; bảo hiểm</div>
+      </div>
+    </div>
+
+    <div class="big-quote">
+      <div class="big-quote-text">"Decision Accelerators" (DAs) — Chương trình Tăng tốc Ra quyết định: các can thiệp nhóm lớn để xây dựng chiến lược cho các lĩnh vực dịch vụ lâm sàng chính.</div>
+      <span class="big-quote-author">— Dự án OD lớn nhất tại AH</span>
+    </div>
+  </div>
+
+  <!-- A2.1 LÀM RÕ VẤN ĐỀ AH -->
+  <div data-id="ah-problem" data-eyebrow="Phần II — A2.1" data-title="Làm rõ vấn đề tại Alegent Health">
+
+    <div class="alert-box info">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Đặc biệt: Không phải vấn đề tiêu cực</div>
+        <div class="alert-text">Vấn đề bề mặt tại AH là <strong>cơ hội phát triển</strong>: đánh giá tác động của các can thiệp nhóm lớn lên tổ chức. Nhà nghiên cứu USC nhận ra cơ hội tại <em>một hội nghị</em>.</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Ba kênh thu thập dữ liệu sơ bộ</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="icon-card-title">Hội nghị</div>
+        <div class="icon-card-desc">Trò chuyện với 2 chuyên gia tư vấn về AH</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="icon-card-title">Internet</div>
+        <div class="icon-card-desc">Tìm hiểu thông tin công khai về AH</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="icon-card-title">Điện thoại CIO</div>
+        <div class="icon-card-desc">Trao đổi với Giám đốc Đổi mới của AH</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Đánh giá</div>
+      <div class="insight-text">Đây là <strong>ví dụ điển hình</strong> về việc thu thập dữ liệu sơ bộ <em>nhanh chóng &amp; hiệu quả</em> để xác định bản chất vấn đề trước khi tiến tới giai đoạn hợp đồng.</div>
+    </div>
+  </div>
+
+  <!-- A2.2 KHÁCH HÀNG AH -->
+  <div data-id="ah-client" data-eyebrow="Phần II — A2.2" data-title="Xác định khách hàng tại Alegent Health">
+
+    <div class="slide-heading">Sáu bên liên quan chủ chốt</div>
+    <div class="stakeholder-grid cols-3">
+      <div class="stakeholder">
+        <div class="stakeholder-role">CEO</div>
+        <div class="stakeholder-desc">Tổng giám đốc</div>
+      </div>
+      <div class="stakeholder">
+        <div class="stakeholder-role">CFO</div>
+        <div class="stakeholder-desc">Giám đốc tài chính</div>
+      </div>
+      <div class="stakeholder">
+        <div class="stakeholder-role">CIO</div>
+        <div class="stakeholder-desc">Giám đốc đổi mới</div>
+      </div>
+      <div class="stakeholder">
+        <div class="stakeholder-role">Chủ tịch BV</div>
+        <div class="stakeholder-desc">Lãnh đạo từng bệnh viện</div>
+      </div>
+      <div class="stakeholder">
+        <div class="stakeholder-role">Phó CT</div>
+        <div class="stakeholder-desc">Dịch vụ lâm sàng</div>
+      </div>
+      <div class="stakeholder">
+        <div class="stakeholder-role">Bác sĩ</div>
+        <div class="stakeholder-desc">Nhóm chủ chốt</div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Lý thuyết vs. Thực tế</div>
+    <div class="vs-row">
+      <div class="vs-side theory">
+        <div class="vs-eyebrow">Lý thuyết</div>
+        <div class="vs-title">Study Team đa bên</div>
+        <div class="vs-text">Đề xuất thành lập nhóm nghiên cứu gồm tất cả bên liên quan chủ chốt để quản trị dự án</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="vs-side reality">
+        <div class="vs-eyebrow">Thực tế</div>
+        <div class="vs-title">Một đầu mối duy nhất</div>
+        <div class="vs-text">CIO chỉ định <strong>Giám đốc Right Track</strong> làm đầu mối phối hợp duy nhất</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Bài học cốt lõi</div>
+      <div class="insight-text">Sự khác biệt giữa <em>lý thuyết</em> (bao gồm tất cả bên liên quan) và <em>thực tế</em> (phải thích ứng với <strong>cấu trúc quyền lực</strong> và <strong>sự sẵn có của nhân sự</strong>).</div>
+    </div>
+  </div>
+
+  <!-- A2.3 CHUYÊN GIA AH -->
+  <div data-id="ah-expert" data-eyebrow="Phần II — A2.3" data-title="Lựa chọn chuyên gia OD tại Alegent Health">
+
+    <div class="hero-stat">
+      <div class="hero-stat-number">←</div>
+      <div class="hero-stat-label">Hướng ngược mô hình truyền thống</div>
+      <div class="hero-stat-sub">Chuyên gia tiếp cận tổ chức, không phải ngược lại</div>
+    </div>
+
+    <div class="slide-heading">Quy trình tiếp cận thực tế</div>
+    <div class="flow-row">
+      <div class="flow-node start">
+        <div class="flow-node-label">Nhà NC USC</div>
+        <div class="flow-node-sub">Khởi xướng</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-label">2 chuyên gia tư vấn</div>
+        <div class="flow-node-sub">Trung gian</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node end">
+        <div class="flow-node-label">CIO của AH</div>
+        <div class="flow-node-sub">Người tiếp nhận</div>
+      </div>
+    </div>
+
+    <div class="big-quote">
+      <div class="big-quote-text">Không phải tổ chức tìm kiếm chuyên gia, mà chuyên gia (qua trung gian tư vấn) đề xuất hợp tác với tổ chức.</div>
+      <span class="big-quote-author">— Đặc điểm tiếp cận tại AH</span>
+    </div>
+
+    <div class="icon-grid cols-2">
+      <div class="icon-card">
+        <div class="icon-card-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+        </div>
+        <div class="icon-card-title">Tin cậy có sẵn</div>
+        <div class="icon-card-desc">Quan hệ làm việc 2 năm giữa tư vấn &amp; AH</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="icon-card-title">Email giới thiệu</div>
+        <div class="icon-card-desc">Mô tả phương pháp <em>nghiên cứu hành động</em></div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Bài học</div>
+      <div class="insight-text">Giai đoạn tiếp cận có thể diễn ra qua <em>nhiều kênh</em> — và <strong>sự tin cậy dựa trên mối quan hệ có sẵn</strong> đóng vai trò then chốt.</div>
+    </div>
+  </div>
+
+  <!-- A3.1 HỢP ĐỒNG AH -->
+  <div data-id="ah-contract" data-eyebrow="Phần II — A3.1" data-title="Hợp đồng chính thức tại Alegent Health">
+
+    <div class="slide-heading">Ba luồng công việc đề xuất</div>
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Phân tích tài liệu lưu trữ DA</div>
+          <div class="process-step-desc">Sử dụng bản ghi gần như nguyên văn của các buổi DA</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Hai vòng phỏng vấn</div>
+          <div class="process-step-desc">Lãnh đạo và nhân viên các cấp</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Quản trị dự án</div>
+          <div class="process-step-desc">Thông qua nhóm nghiên cứu (study team)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">XUNG ĐỘT NGHIÊM TRỌNG</div>
+        <div class="alert-text">Hợp đồng tiêu chuẩn của AH quy định: <strong>tất cả dữ liệu &amp; tài liệu thuộc quyền sở hữu độc quyền của AH</strong> — trực tiếp <em>mâu thuẫn</em> với tuyên bố bảo mật và quyền công bố của nhà nghiên cứu.</div>
+      </div>
+    </div>
+
+    <div class="vs-row">
+      <div class="vs-side theory">
+        <div class="vs-eyebrow">Nhà NC muốn</div>
+        <div class="vs-title">Quyền công bố</div>
+        <div class="vs-text">Xuất bản nghiên cứu, chia sẻ kết quả với cộng đồng học thuật</div>
+      </div>
+      <div class="vs-divider">⚡</div>
+      <div class="vs-side reality">
+        <div class="vs-eyebrow">AH muốn</div>
+        <div class="vs-title">Sở hữu độc quyền</div>
+        <div class="vs-text">Tất cả dữ liệu, tài liệu chỉ thuộc về AH</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Kết quả</div>
+      <div class="insight-text">Cuối cùng đạt thỏa thuận <strong>win-win về quyền xuất bản</strong> — nhưng xung đột này chỉ phát hiện <em>muộn</em>, gây trì hoãn dự án.</div>
+    </div>
+  </div>
+
+  <!-- A3.2 LỊCH TRÌNH AH -->
+  <div data-id="ah-schedule" data-eyebrow="Phần II — A3.2" data-title="Lịch trình dự án tại Alegent Health">
+
+    <div class="slide-heading">Diễn biến lịch trình</div>
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="timeline-step done">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">17–18/10</div>
+          <div class="timeline-event">Dự kiến bắt đầu</div>
+        </div>
+        <div class="timeline-step warn">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">17–18/10</div>
+          <div class="timeline-event">Trùng lịch DA Boy Scouts</div>
+        </div>
+        <div class="timeline-step warn">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">10 → 12</div>
+          <div class="timeline-event">Đẩy lùi 2 tháng</div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Đầu 12</div>
+          <div class="timeline-event">Triển khai gấp rút</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-heading">Ba vấn đề thực tế</div>
+    <div class="icon-grid cols-3">
+      <div class="icon-card">
+        <div class="icon-card-icon terracotta">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <div class="icon-card-title">Xung đột lịch</div>
+        <div class="icon-card-desc">Trùng với sự kiện DA Boy Scouts đã lên lịch</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon gold">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <div class="icon-card-title">Đẩy lùi liên tục</div>
+        <div class="icon-card-desc">Khó tìm thời gian phù hợp 2 bên</div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon navy">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="icon-card-title">Hoãn 2 tháng</div>
+        <div class="icon-card-desc">Từ tháng 10 sang đầu tháng 12</div>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.3 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>
+      </div>
+      <div class="alert-content">
+        <div class="alert-title">Hậu quả: bỏ qua cuộc họp study team</div>
+        <div class="alert-text">Trong quá trình gấp rút sắp xếp phỏng vấn, <strong>cuộc họp nhóm nghiên cứu</strong> — yếu tố quản trị quan trọng đã cam kết — <em>đã bị bỏ qua</em>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A4 BÀI HỌC -->
+  <div data-id="ah-lessons" data-eyebrow="Phần II — A4" data-title="Bài học rút ra từ Alegent Health">
+
+    <div class="slide-heading">Bảng đối chiếu — 6 khía cạnh</div>
+    <table class="compact-table">
+      <thead>
+        <tr><th>Khía cạnh</th><th>✓ Điểm mạnh</th><th>✗ Cần cải thiện</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-aspect">Làm rõ vấn đề</td>
+          <td class="col-strength">Đa nguồn: tư vấn, internet, CIO</td>
+          <td class="col-improve">Quá nhanh, có thể thiếu chiều sâu</td>
+        </tr>
+        <tr>
+          <td class="col-aspect">Xác định khách hàng</td>
+          <td class="col-strength">Đề xuất study team đa bên</td>
+          <td class="col-improve">Study team chưa được triệu tập</td>
+        </tr>
+        <tr>
+          <td class="col-aspect">Lựa chọn chuyên gia</td>
+          <td class="col-strength">Referral uy tín từ USC</td>
+          <td class="col-improve">Không có quy trình đánh giá AH</td>
+        </tr>
+        <tr>
+          <td class="col-aspect">Kỳ vọng chung</td>
+          <td class="col-strength">Cả 2 bên xác định lợi ích rõ</td>
+          <td class="col-improve">Xung đột quyền sở hữu phát hiện muộn</td>
+        </tr>
+        <tr>
+          <td class="col-aspect">Thời gian &amp; nguồn lực</td>
+          <td class="col-strength">Lịch trình chi tiết, work streams rõ</td>
+          <td class="col-improve">Hoãn 2 tháng, bỏ sót họp study team</td>
+        </tr>
+        <tr>
+          <td class="col-aspect">Quy tắc làm việc</td>
+          <td class="col-strength">Đạt thỏa thuận win-win cuối cùng</td>
+          <td class="col-improve">Không thống nhất ground rules từ đầu</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="slide-heading">Hai bài học cốt lõi</div>
+    <div class="lessons-grid">
+      <div class="lesson-card">
+        <div class="lesson-num">①</div>
+        <div class="lesson-title">Minh bạch ground rules từ đầu</div>
+        <div class="lesson-text">Đặc biệt là <strong>quyền sở hữu dữ liệu</strong> — nếu không thống nhất sớm, xung đột sẽ phát sinh ở giai đoạn muộn và khó giải quyết.</div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">②</div>
+        <div class="lesson-title">Thực hiện đầy đủ essential</div>
+        <div class="lesson-text">Cam kết <strong>essential requirements</strong> (như cuộc họp study team) phải được duy trì — không bỏ qua dù có áp lực thời gian.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const modalIcons = {
+    'overview': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+    'problem': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>',
+    'client': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/><path d="M14 14c2 0 5 1.5 5 4"/></svg>',
+    'expert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>',
+    'expectations': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>',
+    'resources': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    'rules': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>',
+    'psych': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-9 9c0 1.5.4 2.9 1 4l-1 4 4-1c1.2.7 2.5 1 4 1a9 9 0 0 0 1-17z"/></svg>',
+    'ah-intro': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21V12h6v9"/></svg>',
+    'ah-problem': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>',
+    'ah-client': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/><path d="M14 14c2 0 5 1.5 5 4"/></svg>',
+    'ah-expert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>',
+    'ah-contract': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="9" y1="14" x2="15" y2="14"/></svg>',
+    'ah-schedule': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>',
+    'ah-lessons': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15 14c.2-1 .7-1.7 1.4-2.5A4.7 4.7 0 0 0 18 8a6 6 0 0 0-12 0c0 1 .2 2.2 1.5 3.5A4.6 4.6 0 0 1 9 14"/></svg>'
+  };
+
+  function openDetail(id) {
+    const source = document.querySelector(`[data-id="${id}"]`);
+    if (!source) return;
+
+    document.getElementById('modal-eyebrow').textContent = source.dataset.eyebrow || '';
+    document.getElementById('modal-title').textContent = source.dataset.title || '';
+    document.getElementById('modal-icon').innerHTML = modalIcons[id] || '';
+    document.getElementById('modal-body').innerHTML = source.innerHTML;
+
+    const modal = document.getElementById('modal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+  }
+
+  function closeDetail() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeIfBackdrop(event) {
+    if (event.target.id === 'modal') closeDetail();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDetail();
+  });
+</script>
+
+</body>
+</html>
